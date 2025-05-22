@@ -58,8 +58,8 @@ class Name extends \yii\db\ActiveRecord
     public static function getNames()
     {
         return self::find()
-        ->select('title')
-        ->indexBy('id')
-        ->column();
+            ->select('title')
+            ->indexBy('id')
+            ->column();
     }
 }

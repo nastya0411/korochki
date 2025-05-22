@@ -9,6 +9,7 @@ use yii\bootstrap5\Breadcrumbs;
 use yii\bootstrap5\Html;
 use yii\bootstrap5\Nav;
 use yii\bootstrap5\NavBar;
+use yii\web\JqueryAsset;
 
 AppAsset::register($this);
 
@@ -75,12 +76,15 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
             <?php if (!empty($this->params['breadcrumbs'])): ?>
                 <?= Breadcrumbs::widget(['links' => $this->params['breadcrumbs']]) ?>
             <?php endif ?>
-            <?= Alert::widget() ?>
+            <div class="alert-block" style="display: none">
+                <div id="typewriter"></div>
+                <?= Alert::widget() ?>
+            </div>
             <?= $content ?>
         </div>
     </main>
 
-
+    <?php $this->registerJsFile("/js/animation.js", ["depends" => JqueryAsset::class]) ?>
     <?php $this->endBody() ?>
 </body>
 

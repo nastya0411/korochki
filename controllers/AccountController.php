@@ -41,7 +41,7 @@ class AccountController extends Controller
     public function actionIndex()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => Order::find(),
+            'query' => Order::find()->where(['user_id' => Yii::$app->user->id]),
             
             'pagination' => [
                 'pageSize' => 5

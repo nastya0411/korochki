@@ -33,9 +33,15 @@ use yii\bootstrap5\Html;
             <?= Html::a('Просмотр', ['view', 'id' => $model->id], ['class' => 'btn btn-outline-info']) ?>
             <?= $model->status_id == Status::getStatusId('Новая')
                 ? Html::a('Идет обучение', ['work', 'id' => $model->id], ['class' =>
-                'btn btn-outline-primary', 'data-method' => 'post', 'data-pjax' => 0])
-                . Html::a('Обучение завершено', ['cancel', 'id' => $model->id], ['class' =>
-                'btn btn-outline-success', 'data-method' => 'post', 'data-pjax' => 0])
+                'btn btn-outline-primary mx-2', 'data-method' => 'post', 'data-pjax' => 0])
+                . Html::a('Обучение завершено', ['apply', 'id' => $model->id], ['class' =>
+                'btn btn-outline-success mx-1', 'data-method' => 'post', 'data-pjax' => 0])
+                : ''
+            ?>
+
+            <?= $model->status_id == Status::getStatusId('Идет обучение')
+                ? Html::a('Обучение завершено', ['apply', 'id' => $model->id], ['class' =>
+                'btn btn-outline-success mx-1', 'data-method' => 'post', 'data-pjax' => 0])
                 : ''
             ?>
 

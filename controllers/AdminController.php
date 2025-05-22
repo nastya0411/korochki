@@ -3,6 +3,8 @@
 namespace app\controllers;
 
 use app\models\Order;
+use app\models\Status;
+use Yii;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -40,16 +42,16 @@ class AdminController extends Controller
     {
         $dataProvider = new ActiveDataProvider([
             'query' => Order::find(),
-            /*
+
             'pagination' => [
-                'pageSize' => 50
+                'pageSize' => 5
             ],
             'sort' => [
                 'defaultOrder' => [
                     'id' => SORT_DESC,
                 ]
             ],
-            */
+
         ]);
 
         return $this->render('index', [
@@ -92,6 +94,8 @@ class AdminController extends Controller
         ]);
     }
 
+
+
     /**
      * Updates an existing Order model.
      * If update is successful, the browser will be redirected to the 'view' page.
@@ -110,6 +114,32 @@ class AdminController extends Controller
         return $this->render('update', [
             'model' => $model,
         ]);
+    }
+
+    public function actionWork($id)
+    {
+        $model = $this->findModel($id);
+
+        if ($this->request->isPost) {
+            $model->status_id = Status::getStatusId('Идет обучение');
+            if ($model->save()) {
+                Yii::$app->session->setFlash('success', 'По текущей заявке идет обучение!');
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
+        }
+    }
+
+    public function actionApply($id)
+    {
+        $model = $this->findModel($id);
+
+        if ($this->request->isPost) {
+            $model->status_id = Status::getStatusId('Обучение завершено');
+            if ($model->save()) {
+                Yii::$app->session->setFlash('success', 'По текущей заявке обучение завершено!');
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
+        }
     }
 
     /**

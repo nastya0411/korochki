@@ -70,6 +70,11 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
         NavBar::end();
         ?>
     </header>
+    <?php Yii::debug($controllerId = Yii::$app->controller->id) ?>
+    <?php Yii::debug($actionId = Yii::$app->controller->action->id) ?>
+
+
+
 
     <main id="main" class="flex-shrink-0" role="main">
         <div class="container">

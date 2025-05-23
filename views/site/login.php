@@ -11,6 +11,9 @@ use yii\bootstrap5\Html;
 $this->title = 'Авторизация';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+
+    <?php Yii::debug(pathinfo(__FILE__)) ?>
+
 <div class="site-login">
     <h1><?= Html::encode($this->title) ?></h1>
 

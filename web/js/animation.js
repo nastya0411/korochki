@@ -1,15 +1,5 @@
 $(() => {
-  const showAlert = () => {
-    setTimeout(() => {
-      $(".alert-block").fadeIn(2500);
-    }, 1500);
-
-    setTimeout(() => {
-      $(".alert-block").fadeOut(2000);
-    }, 6000);
-  };
-
-  const text = "Онлайн курсы твоей мечты!";
+    const text = "Онлайн курсы твоей мечты!";
   const element = $(".main-text");
   let i = 0;
 

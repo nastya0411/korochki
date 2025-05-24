@@ -76,8 +76,7 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
             <?php if (!empty($this->params['breadcrumbs'])): ?>
                 <?= Breadcrumbs::widget(['links' => $this->params['breadcrumbs']]) ?>
             <?php endif ?>
-            <div class="alert-block" style="display: none">
-                <div id="typewriter"></div>
+            <div class="alert-block position-relative d-flex justify-content-end">
                 <?= Alert::widget() ?>
             </div>
             <?= $content ?>
@@ -86,8 +85,7 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
     <?php
         $controller = Yii::$app->controller->id;
         $action = Yii::$app->controller->action->id;
-        Yii::debug($controller, $action);
-
+        
         if (isset(Yii::$app->params["css"][$controller])) {
             $this->registerCssFile("/css/" . Yii::$app->params["css"][$controller]);
         } elseif (isset(Yii::$app->params["css"][$action])) {
@@ -97,7 +95,9 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
             // $this->registerCssFile("/css/fileNameCss.css");
         }
     ?>
-    
+    <?php
+        $this->registerJsFile("/js/alert.js", ["depends" => JqueryAsset::class]); 
+    ?>
     <?php $this->endBody() ?>
 </body>
 

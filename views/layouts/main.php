@@ -70,11 +70,6 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
         NavBar::end();
         ?>
     </header>
-    <?php Yii::debug($controllerId = Yii::$app->controller->id) ?>
-    <?php Yii::debug($actionId = Yii::$app->controller->action->id) ?>
-
-
-
 
     <main id="main" class="flex-shrink-0" role="main">
         <div class="container">
@@ -88,7 +83,20 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
             <?= $content ?>
         </div>
     </main>
+    <?php
+        $controller = Yii::$app->controller->id;
+        $action = Yii::$app->controller->action->id;
+        Yii::debug($controller, $action);
 
+        if (isset(Yii::$app->params["css"][$controller])) {
+            $this->registerCssFile("/css/" . Yii::$app->params["css"][$controller]);
+        } elseif (isset(Yii::$app->params["css"][$action])) {
+            $this->registerCssFile("/css/" . Yii::$app->params["css"][$action]);
+        } else {
+            // load def background img
+            // $this->registerCssFile("/css/fileNameCss.css");
+        }
+    ?>
     <?php $this->registerJsFile("/js/animation.js", ["depends" => JqueryAsset::class]) ?>
     <?php $this->endBody() ?>
 </body>

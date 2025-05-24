@@ -2,12 +2,14 @@
 
 /** @var yii\web\View $this */
 
+use yii\web\JqueryAsset;
+
 $this->title = 'Корочки, есть';
 ?>
 <div class="site-index">
 
     <div class="jumbotron text-center bg-transparent mt-5">
-        <h1 class="display-4">Онлайн курсы твоей мечты!</h1>
+        <h1 class="display-4 main-text"></h1>
 
         <p class="lead">Портал дополнительного профессионального образования</p>
 
@@ -41,3 +43,8 @@ $this->title = 'Корочки, есть';
         </div>
     </div>
 </div>
+
+<?php 
+
+    $this->registerJsFile("/js/animation.js", ["depends" => JqueryAsset::class]) 
+?>

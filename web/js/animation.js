@@ -9,24 +9,23 @@ $(() => {
     }, 6000);
   };
 
-  const text = "Привет, это эффект печатающегося текста на JavaScript!";
-  const element = document.getElementById("typewriter");
+  const text = "Онлайн курсы твоей мечты!";
+  const element = $(".main-text");
   let i = 0;
 
   function typeWriter() {
     if (i < text.length) {
-      element.innerHTML += text.charAt(i);
+      element.html(element.html() + text.charAt(i));
       i++;
-      setTimeout(typeWriter, 100); // Скорость печати (мс)
+      setTimeout(typeWriter, 200); // Скорость печати (мс)
     } else {
-      setTimeout(() => (element.innerHTML = ""), 200);
+      setTimeout(() => {        
+        element.html("")
+        i = 0;
+        typeWriter()    
+      }, 1000);
     }
   }
 
-  // Запускаем эффект
-
-  if ($(".alert").length) {
-    // typeWriter();
-    showAlert();
-  }
+    typeWriter();
 });

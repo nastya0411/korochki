@@ -97,7 +97,7 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
             // $this->registerCssFile("/css/fileNameCss.css");
         }
     ?>
-    <?php $this->registerJsFile("/js/animation.js", ["depends" => JqueryAsset::class]) ?>
+    
     <?php $this->endBody() ?>
 </body>
 
